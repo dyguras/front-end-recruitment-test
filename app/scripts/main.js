@@ -76,4 +76,21 @@
   }
 
   // Your custom JavaScript goes here
+
+  const cloneButton = getButtonByText('Yeah, I want more bacon!');
+  if (cloneButton) cloneButton.addEventListener('click', cloneBacon);
+
+  function getButtonByText(buttonText) {
+    const buttons = [...document.querySelectorAll('button')]
+        .filter(
+            el => (el.children.length === 0 && el.outerText && el.outerText.includes(buttonText)));
+    return buttons[0];
+  }
+
+  function cloneBacon() {
+    const baconImage = document.querySelector("img[alt='Bacon']");
+    if (baconImage) baconImage.parentElement.appendChild(baconImage.cloneNode());
+  }
+
+
 })();
