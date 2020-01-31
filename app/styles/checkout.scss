@@ -1,0 +1,87 @@
+$grey-12: rgba(0,0,0,.12);
+$grey-36: rgba(0,0,0,.36);
+$bold: 700;
+$medium: 500;
+$regular: 400;
+$light: 300;
+
+
+#checkout {
+  h6 {
+    color: black;
+    text-transform: uppercase;
+    font-weight: $bold;
+    font-size: 12px;
+    position: relative;
+    line-height: 20px;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+    display: inline-block;
+    &::before {
+      content: '1';
+      position: absolute;
+      left: -30px;
+      color: white;
+      font-size: 14px;
+      background-color: black;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      font-weight: $bold;
+      letter-spacing: initial;
+    }
+    &.nr2::before {
+      content: '2';
+    }
+  }
+  .mdl-card {
+    overflow: visible;
+  }
+  .mdl-textfield {
+    background-color: white;
+    padding: 20px 0 4px 0;
+    border-radius: 4px;
+    border-bottom: 2px solid $grey-12;
+    &__input {
+      padding-left: 12px;
+      border-radius: 4px;
+      border-bottom: 0;
+      font-weight: $bold;
+      color: $grey-36;
+    }
+    &__label {
+      padding-left: 12px;
+      border-radius: 4px;
+      border-bottom: 0;
+      font-weight: $bold;
+      color: black;
+    }
+    &.is-focused .mdl-textfield__label:after {
+      visibility: hidden;
+    }
+    .mdl-textfield__error {
+      padding-left: 10px;
+    }
+    .mdl-textfield__label__icon {
+      position: absolute;
+      right: 12px;
+      top:0;
+      line-height: 52px;
+      font-size: 21px;
+      color: $grey-12;
+   }
+  }
+  #lock-icon {
+    font-size: 13px;
+    line-height: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+}
+.mdl-grid.mdl-grid--no-left-spacing {
+  padding: 0;
+  .mdl-cell {
+    margin: 0 16px 18px 0;
+  }
+}

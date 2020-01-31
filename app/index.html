@@ -51,6 +51,7 @@
 
     <!-- Your styles -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/checkout.css">
   </head>
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -63,11 +64,12 @@
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-          <a href="#overview" class="mdl-layout__tab is-active">Overview</a>
+          <a href="#overview" class="mdl-layout__tab">Overview</a>
           <a href="#features" class="mdl-layout__tab">Features</a>
           <a href="#features" class="mdl-layout__tab">Details</a>
           <a href="#features" class="mdl-layout__tab">Technology</a>
           <a href="#features" class="mdl-layout__tab">FAQ</a>
+          <a href="#checkout" class="mdl-layout__tab is-active">Checkout</a>
           <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
             <i class="material-icons" role="presentation">add</i>
             <span class="visuallyhidden">Add</span>
@@ -75,7 +77,7 @@
         </div>
       </header>
       <main class="mdl-layout__content">
-        <div class="mdl-layout__tab-panel is-active" id="overview">
+        <div class="mdl-layout__tab-panel" id="overview">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
               <i class="material-icons">play_circle_filled</i>
@@ -225,6 +227,75 @@
               <p>
                 Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
               </p>
+            </div>
+          </section>
+        </div>
+        <div class="mdl-layout__tab-panel is-active" id="checkout">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <h6 class="mdl-cell mdl-cell--12-col">Personal information</h6>
+            <div class="mdl-cell mdl-cell--8-col">
+              <form name="checkout" action="#">
+                <div class="mdl-grid mdl-grid--no-left-spacing">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+                    <input class="mdl-textfield__input" name="first-name" type="text" id="first-name" pattern="[A-Z,a-z, ]*">
+                    <label class="mdl-textfield__label" for="first-name">First name</label>
+                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+                    <input class="mdl-textfield__input" name="last-name" type="text" id="last-name" pattern="[A-Z,a-z, ]*">
+                    <label class="mdl-textfield__label" for="last-name">Last name</label>
+                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                    <input class="mdl-textfield__input" name="email" type="text" id="email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
+                    <label class="mdl-textfield__label" for="email">Email</label>
+                    <span class="mdl-textfield__error">Valid Email Address only</span>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+                    <input class="mdl-textfield__input" name="country" type="text" id="country">
+                    <label class="mdl-textfield__label" for="country">Country</label>
+                  </div>
+               <!--
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <select class="mdl-textfield__input" name="country" id="country">
+                    <option>United States</option>
+                    <option value="111">111</option>
+                    <option value="222">222</option>
+                    <option value="333">333</option>
+                  </select>
+                  <label class="mdl-textfield__label" for="country">Country</label>
+                </div>
+-->
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+                    <input class="mdl-textfield__input" name="postal-code" type="text" id="postal-code">
+                    <label class="mdl-textfield__label" for="postal-code">Postal Code</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                    <input class="mdl-textfield__input" name="phone-number" type="text" id="phone-number">
+                    <label class="mdl-textfield__label" for="phone-number">Phone Number</label>
+                  </div>
+                </div>
+              <h6 class="nr2">Payments details</h6><i class="material-icons" id="lock-icon">lock</i>
+              <div class="mdl-grid mdl-grid--no-left-spacing">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                  <input class="mdl-textfield__input" name="credit-card-number" type="text" id="credit-card-number">
+                  <label class="mdl-textfield__label" for="credit-card-number">Credit Card Number</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+                  <input class="mdl-textfield__input" name="security-code" type="password" id="security-code">
+                  <label class="mdl-textfield__label" for="security-code">Security code</label>
+                  <i class="material-icons mdl-icon-toggle__label mdl-textfield__label__icon">help_outline</i>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+                  <input class="mdl-textfield__input" name="expiration-date" type="text" id="expiration-date">
+                  <label class="mdl-textfield__label" for="expiration-date">Expiration date</label>
+                </div>
+              </div>
+            </form>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="box">3</div>
+              Minim duis incididunt est cillum est ex occaecat consectetur. Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
             </div>
           </section>
         </div>
