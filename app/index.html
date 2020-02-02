@@ -48,6 +48,7 @@
     material.purple-indigo.min.css
     -->
     <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
 
     <!-- Your styles -->
     <link rel="stylesheet" href="styles/main.css">
@@ -251,21 +252,20 @@
                     <label class="mdl-textfield__label" for="email">Email</label>
                     <span class="mdl-textfield__error">Valid Email Address only</span>
                   </div>
-                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
-                    <input class="mdl-textfield__input" name="country" type="text" id="country">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select mdl-cell mdl-cell--6-col">
+                    <input class="mdl-textfield__input" value="" id="country" readonly/>
+                    <input value="" type="hidden" name="country"/>
+                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
                     <label class="mdl-textfield__label" for="country">Country</label>
+                    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="country">
+                      <li class="mdl-menu__item" data-val="USA">United States</li>
+                      <li class="mdl-menu__item" data-val="BLR">Belarus</li>
+                      <li class="mdl-menu__item" data-val="BRA">Brazil</li>
+                      <li class="mdl-menu__item" data-val="FRA">France</li>
+                      <li class="mdl-menu__item" data-val="DEU">Germany</li>
+                      <li class="mdl-menu__item" data-val="RUS">Russia</li>
+                    </ul>
                   </div>
-               <!--
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <select class="mdl-textfield__input" name="country" id="country">
-                    <option>United States</option>
-                    <option value="111">111</option>
-                    <option value="222">222</option>
-                    <option value="333">333</option>
-                  </select>
-                  <label class="mdl-textfield__label" for="country">Country</label>
-                </div>
--->
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
                     <input class="mdl-textfield__input" name="postal-code" type="text" id="postal-code">
                     <label class="mdl-textfield__label" for="postal-code">Postal Code</label>
@@ -280,22 +280,59 @@
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
                   <input class="mdl-textfield__input" name="credit-card-number" type="text" id="credit-card-number">
                   <label class="mdl-textfield__label" for="credit-card-number">Credit Card Number</label>
+                  <img src="images/visa.svg" alt="Visa logo" width="30">
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
                   <input class="mdl-textfield__input" name="security-code" type="password" id="security-code">
                   <label class="mdl-textfield__label" for="security-code">Security code</label>
-                  <i class="material-icons mdl-icon-toggle__label mdl-textfield__label__icon">help_outline</i>
+                  <span id="tooltip-help" class="mdl-textfield__tooltip"><i class="material-icons mdl-icon-toggle__label mdl-textfield__label__icon">help_outline</i></span>
+                  <span class="mdl-tooltip" for="tooltip-help">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.</span>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
-                  <input class="mdl-textfield__input" name="expiration-date" type="text" id="expiration-date">
+                  <input class="mdl-textfield__input" name="expiration-date" type="text" id="expiration-date" placeholder="MM / YY" pattern="[0-9]{2}[ ][/][ ][0-9]{2}[ ]?">
                   <label class="mdl-textfield__label" for="expiration-date">Expiration date</label>
+                  <span class="mdl-textfield__error">Valid format: MM / YY</span>
                 </div>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-cell mdl-cell--12-col" id="complete-purchase">
+                  <i class="material-icons">shopping_cart</i> COMPLETE PURCHASE
+                </button>
               </div>
             </form>
             </div>
             <div class="mdl-cell mdl-cell--4-col">
-              <div class="box">3</div>
-              Minim duis incididunt est cillum est ex occaecat consectetur. Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
+              <div class="mdl-grid mdl-grid--no-left-spacing" id="your-order">
+                <table>
+                  <tr>
+                    <th colspan="2">your order</th>
+                  </tr>
+                  <tr>
+                    <td>Apple Watch Sport</td>
+                    <td class="dollar">580</td>
+                  </tr>
+                  <tr>
+                    <td>Modern Buckle</td>
+                    <td class="dollar">380</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><hr></td>
+                  </tr>
+                  <tr>
+                    <td>Total purchases</td>
+                    <td class="dollar">580</td class="dollar">
+                  </tr>
+                  <tr>
+                    <td>Esitmated tax</td>
+                    <td class="dollar">0</td class="dollar">
+                  </tr>
+                  <tr>
+                    <td colspan="2"><hr></td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td class="dollar">960</td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </section>
         </div>
@@ -357,6 +394,7 @@
 
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
     <!-- build:js scripts/main.min.js -->
+    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
 

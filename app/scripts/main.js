@@ -78,7 +78,23 @@
   // Your custom JavaScript goes here
 
   const cloneButton = getButtonByText('Yeah, I want more bacon!');
+  const expirationDateInput = document.getElementById('expiration-date');
+  const dollars = [...document.querySelectorAll('.dollar')];
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+
   if (cloneButton) cloneButton.addEventListener('click', cloneBacon);
+  if (expirationDateInput) {
+    expirationDateInput.addEventListener('keyup', formatString);
+  }
+  if (dollars) {
+    dollars.map(function(el) {
+      el.innerText = formatter.format(el.innerText);
+    });
+  }
 
   /**
    * Looks for a button with a specific text
@@ -101,5 +117,25 @@
     if (baconImage) {
       baconImage.parentElement.appendChild(baconImage.cloneNode());
     }
+  }
+
+  /**
+   * Format input string to MM / YY format
+   * @param {event} e keyup event handler
+   */
+  function formatString(e) {
+    e.target.value = e.target.value.replace(
+      /^([1-9]\ \/|[1-9]\/|[2-9])$/g, '0$1 / ' // 3 > 03 /
+    ).replace(
+      /^(0[1-9]|1[0-2])$/g, '$1 / ' // 11 > 11 /
+    ).replace(
+      /^1([3-9])$/g, '01 / $1' // 13 > 01 / 3
+    ).replace(
+      /^0\/|0+$/g, '0' // 0/ > 0 and 00 > 0
+    ).replace(
+      /[^\d|^\/|^\ ]/g, '' // To allow only digits and `/` and space
+    ).replace(
+      /\/\//g, '/' // Prevent entering more than 1 `/`
+    );
   }
 })();
