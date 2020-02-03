@@ -53,8 +53,20 @@
     <!-- Your styles -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/checkout.css">
+    <link rel="stylesheet" href="styles/dialog-polyfill.css">
   </head>
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <dialog class="mdl-dialog">
+      <h4 class="mdl-dialog__title">Error</h4>
+      <div class="mdl-dialog__content">
+        <p>
+          Please fill all fields!
+        </p>
+      </div>
+      <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button close">Close</button>
+      </div>
+    </dialog>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
@@ -235,7 +247,7 @@
           <section class="section--center mdl-grid mdl-grid--no-spacing">
             <h6 class="mdl-cell mdl-cell--12-col">Personal information</h6>
             <div class="mdl-cell mdl-cell--8-col">
-              <form name="checkout" action="#">
+              <form name="checkout" action="#" id="checkoutForm">
                 <div class="mdl-grid mdl-grid--no-left-spacing">
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
                     <input class="mdl-textfield__input" name="first-name" type="text" id="first-name" pattern="[A-Z,a-z, ]*">
@@ -248,7 +260,7 @@
                     <span class="mdl-textfield__error">Letters and spaces only</span>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
-                    <input class="mdl-textfield__input" name="email" type="text" id="email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
+                    <input class="mdl-textfield__input" name="email" type="email" id="email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
                     <label class="mdl-textfield__label" for="email">Email</label>
                     <span class="mdl-textfield__error">Valid Email Address only</span>
                   </div>
@@ -267,20 +279,23 @@
                     </ul>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
-                    <input class="mdl-textfield__input" name="postal-code" type="text" id="postal-code">
+                    <input class="mdl-textfield__input" name="postal-code" type="text" id="postal-code" pattern="[0-9, ,-]*">
                     <label class="mdl-textfield__label" for="postal-code">Postal Code</label>
+                    <span class="mdl-textfield__error mdl-textfield__error__fix">Valid Postal Code only</span>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
-                    <input class="mdl-textfield__input" name="phone-number" type="text" id="phone-number">
+                    <input class="mdl-textfield__input" name="phone-number" type="tel" id="phone-number" pattern="[0-9, ,(,),-]*">
                     <label class="mdl-textfield__label" for="phone-number">Phone Number</label>
+                    <span class="mdl-textfield__error mdl-textfield__error__fix">Valid Phone Number only</span>
                   </div>
                 </div>
               <h6 class="nr2">Payments details</h6><i class="material-icons" id="lock-icon">lock</i>
               <div class="mdl-grid mdl-grid--no-left-spacing">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
-                  <input class="mdl-textfield__input" name="credit-card-number" type="text" id="credit-card-number">
+                  <input class="mdl-textfield__input" name="credit-card-number" type="text" id="credit-card-number" pattern="^4[0-9]{3}[ ]?([0-9]{4}[ ]?){3}$">
                   <label class="mdl-textfield__label" for="credit-card-number">Credit Card Number</label>
                   <img src="images/visa.svg" alt="Visa logo" width="30">
+                  <span class="mdl-textfield__error">Valid VISA Card Number only</span>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
                   <input class="mdl-textfield__input" name="security-code" type="password" id="security-code">
@@ -293,7 +308,7 @@
                   <label class="mdl-textfield__label" for="expiration-date">Expiration date</label>
                   <span class="mdl-textfield__error">Valid format: MM / YY</span>
                 </div>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-cell mdl-cell--12-col" id="complete-purchase">
+                <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-cell mdl-cell--12-col" id="complete-purchase">
                   <i class="material-icons">shopping_cart</i> COMPLETE PURCHASE
                 </button>
               </div>
@@ -395,7 +410,9 @@
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
     <!-- build:js scripts/main.min.js -->
     <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
+    <script src="scripts/dialog-polyfill.js"></script>
     <script src="scripts/main.js"></script>
+
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

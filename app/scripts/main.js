@@ -85,6 +85,15 @@
     currency: 'USD',
     minimumFractionDigits: 2,
   });
+  const completeButton = document.getElementById('complete-purchase');
+  const dialog = document.querySelector('dialog');
+  dialog.querySelector('.close').addEventListener('click', function() {
+    dialog.close();
+  });
+
+  if (!dialog.showModal) {
+    dialogPolyfill.registerDialog(dialog);
+  }
 
   if (cloneButton) cloneButton.addEventListener('click', cloneBacon);
   if (expirationDateInput) {
@@ -94,6 +103,9 @@
     dollars.map(function(el) {
       el.innerText = formatter.format(el.innerText);
     });
+  }
+  if (completeButton) {
+    completeButton.addEventListener('click', checkForm);
   }
 
   /**
@@ -137,5 +149,23 @@
     ).replace(
       /\/\//g, '/' // Prevent entering more than 1 `/`
     );
+  }
+
+  /**
+   * Checking form before submit
+   * @param {event} e click event handler
+   * @return {string} Message
+   */
+  function checkForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('checkoutForm');
+    for (const el of form.elements) {
+      if (el.type !== 'submit' && !el.value) {
+        dialog.showModal();
+        return;
+      }
+    }
+    form.submit();
+    return 'Success - form submited';
   }
 })();
